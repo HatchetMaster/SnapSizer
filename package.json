@@ -1,0 +1,21 @@
+{
+  "name": "snapsizer",
+  "version": "0.1.0",
+  "description": "Local-first image resizer (snapsizer)",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "lint": "echo \"Add lint step\""
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9",
+    "eslint": "^9.35.0",
+    "vitest": "^3.2.4"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "pica": "^9.0.1"
+  }
+}

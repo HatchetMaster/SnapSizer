@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SnapSizer</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <div>
+                <h1>Snap Sizer</h1>
+                <p class="lead">Drag & drop images, resize client-side, download — privacy-first, no uploads.</p>
+            </div>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <div id="dropZone" class="drop" tabindex="0" role="button" aria-label="Drop images here or click to choose">
+                    <div>
+                        <strong>Drop images here</strong>
+                        <div class="muted">or click to choose files (jpg, png, webp, gif)</div>
+                    </div>
+                    <input id="fileInput" type="file" accept="image/*" multiple>
+                </div>
+
+                <div style="margin-top:12px">
+                    <div class="row">
+                        <div style="flex:1">
+                            <label for="mode">Resize mode</label>
+                            <select id="mode" aria-label="Resize mode">
+                                <option value="fit">Fit to width/height (clamp)</option>
+                                <option value="scale">Scale by percent</option>
+                                <option value="width">Set width (maintain aspect)</option>
+                                <option value="height">Set height (maintain aspect)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div style="flex:1">
+                                <label style="display:flex; gap:8px; align-items:center">
+                                    <input id="allowUpscale" type="checkbox" />Allow Upscaling
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="sizeControls">
+                        <div class="row">
+                            <div style="flex:1">
+                                <label for="width">Width (px)</label>
+                                <input id="width" type="number" min="1" placeholder="e.g., 800">
+                            </div>
+                            <div style="flex:1">
+                                <label for="height">Height (px)</label>
+                                <input id="height" type="number" min="1" placeholder="e.g., 600">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label style="display:flex; gap:8px; align-items:center">
+                                <input id="keepAspect" type="checkbox" checked /> Keep aspect ratio
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="scaleControls" style="display:none">
+                        <div class="row">
+                            <div style="flex:1">
+                                <label for="scalePct">Scale percent (%)</label>
+                                <input id="scalePct" type="number" min="1" max="2000" value="100">
+                                <div class="small muted">Use small values (eg 50) to shrink, &gt;100 to enlarge.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:12px">
+                        <div style="flex:1">
+                            <label for="format">Output format</label>
+                            <select id="format">
+                                <option value="orig">Keep original</option>
+                                <option value="image/jpeg">JPEG</option>
+                                <option value="image/png">PNG</option>
+                                <option value="image/webp">WEBP</option>
+                            </select>
+                        </div>
+                        <div style="width:120px">
+                            <label for="quality">JPEG Quality</label>
+                            <input id="quality" type="number" min="10" max="100" value="85">
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:8px; margin-top:12px; align-items:center">
+                        <button id="processBtn" class="btn">Resize selected</button>
+                        <button id="clearBtn" class="btn secondary">Clear</button>
+                        <div style="flex:1"></div>
+                        <button id="downloadAllBtn" class="btn" disabled>Download All ZIP</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="muted">Previews & downloads</div>
+                <div id="thumbs" class="thumbs" aria-live="polite"></div>
+                <div id="status" class="muted" style="margin-top:8px">No images yet</div>
+            </div>
+        </div>
+
+        <footer>
+            <small>Tip: For quick testing set small sizes or scale to 10%. ZIP uses JSZip (CDN).</small>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+    <!-- Pica (CDN) -->
+    <script src="https://unpkg.com/pica@8.0.0/dist/pica.min.js"></script>
+
+</body>
+</html>
